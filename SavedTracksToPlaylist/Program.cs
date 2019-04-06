@@ -34,8 +34,13 @@ namespace SavedTracksToPlaylist
                 Console.ReadKey();
                 System.Environment.Exit(0);
             }
+            
+            if (Controller.Select == 0)
+            {
+                System.Environment.Exit(0);
+            } 
 
-            ImplicitGrantAuth auth = new ImplicitGrantAuth(Modules.AuthorizationCredits.authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead);
+            ImplicitGrantAuth auth = new ImplicitGrantAuth(Modules.AuthorizationCredits.authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.PlaylistModifyPublic);
             auth.AuthReceived += AuthOnAuthReceived;
             auth.Start();
             auth.OpenBrowser();

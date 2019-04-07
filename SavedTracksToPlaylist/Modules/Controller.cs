@@ -53,16 +53,16 @@ namespace SavedTracksToPlaylist.Modules
 
 
             // gets user id
-            string profileID="";
+            string userID="";
             PrivateProfile user = _spotify.GetPrivateProfile();
             if (user.HasError())
             {
                 Console.WriteLine("\n\nProfileID not read properly. Cannot create playlist.\n\n");
             }
-            profileID = user.Id.ToString();
+            userID = user.Id.ToString();
             
             //creats new empty playlist
-            FullPlaylist playlist = _spotify.CreatePlaylist(profileID, "This is my new Playlist");
+            FullPlaylist playlist = _spotify.CreatePlaylist(userID, "This is my new Playlist");
             if (playlist.HasError())
             {
                 Console.WriteLine("/n/nError while creating playlist.\n\n");
@@ -96,7 +96,7 @@ namespace SavedTracksToPlaylist.Modules
                 {
                     break;
                 }
-                ErrorResponse response2 = _spotify.AddPlaylistTracks(profileID, playlistID, tracksURI.GetRange(position, howMany), position);
+                ErrorResponse response2 = _spotify.AddPlaylistTracks(playlistID, tracksURI.GetRange(position, howMany), position);
                 //Console.WriteLine($"Position = {position}, howMany = {howMany}");
                 if (response2.HasError())
                 {
@@ -107,7 +107,8 @@ namespace SavedTracksToPlaylist.Modules
                 position += howMany;
                 iterationCounter++;
            }
-            Console.WriteLine("Task ended. Press any key to continue. . .");
+            Console.WriteLine("\nWarning: there may be less songs added to playlist than are present in library, because they might be not available (grey)");
+            Console.WriteLine("\nTask ended. Press any key to continue. . .");
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using SpotifyAPI.Web; //Base Namespace
 using SpotifyAPI.Web.Auth; //All Authentication-related classes
 using SpotifyAPI.Web.Enums; //Enums
@@ -34,8 +30,8 @@ namespace SavedTracksToPlaylist
                 Console.ReadKey();
                 System.Environment.Exit(0);
             }
-            
-            if (Controller.Select == 0)
+
+            if (Controller.Select == 0 || Controller.Select != 1)
             {
                 System.Environment.Exit(0);
             } 

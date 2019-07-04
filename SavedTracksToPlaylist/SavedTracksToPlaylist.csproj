@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpotifyAPI.Web" Version="4.0.0" />
-    <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.0.0" />
+    <PackageReference Include="EmbedIO" Version="2.9.1" />
+    <PackageReference Include="SpotifyAPI.Web" Version="4.1.2" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>

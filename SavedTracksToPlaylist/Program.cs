@@ -20,14 +20,15 @@ namespace SavedTracksToPlaylist
             Console.WriteLine("[1] Save all tracks from library to playlist or update existing");
             Console.WriteLine("[2] Tracks features");
             Console.WriteLine("[0] Close");
-            try
+
+            //gets user input
+            if (short.TryParse(Console.ReadLine(), out short select))
             {
-                Controller.Select = Int16.Parse(Console.ReadLine()); // user select to int
+                Controller.Select = select;
             }
-            catch (FormatException e)
+            else
             {
                 Console.WriteLine("It's not a number!");
-                Console.WriteLine($"\nError message: \n{e}");
                 Console.WriteLine("\nPress any key to continue. . .");
                 Console.ReadKey();
                 Environment.Exit(0);
@@ -38,7 +39,7 @@ namespace SavedTracksToPlaylist
                 Environment.Exit(0);
             } 
 
-            ImplicitGrantAuth auth = new ImplicitGrantAuth(AuthorizationCredits.Authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.PlaylistModifyPublic | Scope.PlaylistModifyPrivate | Scope.PlaylistReadPrivate );
+            ImplicitGrantAuth auth = new ImplicitGrantAuth(AuthorizationCredits.Authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.PlaylistModifyPublic );
             auth.AuthReceived += AuthOnAuthReceived;
             auth.Start();
             auth.OpenBrowser();

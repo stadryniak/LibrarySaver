@@ -44,6 +44,7 @@ namespace SavedTracksToPlaylist
             auth.Start();
             auth.OpenBrowser();
             Controller.WaitEvent.WaitOne();
+            Console.WriteLine("Closing connection...");
             auth.Stop();
             Console.WriteLine("Connection closed.");
         }

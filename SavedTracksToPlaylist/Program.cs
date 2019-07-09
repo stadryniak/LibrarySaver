@@ -8,7 +8,7 @@ using SavedTracksToPlaylist.Modules;
 
 namespace SavedTracksToPlaylist
 {
-    class Program
+    static class Program
     {
 
         static void Main()

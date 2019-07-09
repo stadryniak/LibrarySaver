@@ -102,7 +102,7 @@ namespace SavedTracksToPlaylist.Modules
             var diffList = libraryUriList.Except( playlistUriList );
             var enumerableDiffList = diffList.ToList();
 
-            Console.WriteLine( $"{enumerableDiffList.Count()} tracks will be added." );
+            Console.WriteLine( $"{enumerableDiffList.Count} tracks will be added." );
 
             return enumerableDiffList.ToList();
         }

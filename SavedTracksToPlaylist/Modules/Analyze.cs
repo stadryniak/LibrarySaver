@@ -15,6 +15,7 @@ namespace SavedTracksToPlaylist.Modules
 
             List<SeveralTracks> trackList = new List<SeveralTracks>();
 
+            Console.WriteLine("Generating list of tracks ids...");
             for ( int i = 0; i < tracksIds.Count; i += 50 )
             {
                 var count = 50;
@@ -33,11 +34,13 @@ namespace SavedTracksToPlaylist.Modules
                 trackList.Add( spotify.GetSeveralTracks( shortIdList ) );
             }
 
+            Console.WriteLine("Track ids generated.");
+
             List<AudioFeatures> features = new List<AudioFeatures>();
 
             tracksIds.ForEach( id =>
              {
-                 Console.WriteLine( $"Processing track: {id}" );
+                 Console.WriteLine( $"Getting features of: {id}" );
                  features.Add( spotify.GetAudioFeatures( id ) );
              } );
 

@@ -47,6 +47,8 @@ namespace SavedTracksToPlaylist
             Console.WriteLine( "Closing connection..." );
             auth.Stop();
             Console.WriteLine( "Connection closed." );
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
 
         private static void AuthOnAuthReceived( object sender, Token payload )

@@ -23,7 +23,7 @@ namespace SavedTracksToPlaylist.Modules
                         }
                         else
                         {
-                            Console.WriteLine( $"Existing playlist detected. ID of existing playlist is: {playlistStatus.PlaylistId}. Type y to confirm update" );
+                            Console.WriteLine( $"Existing playlist detected. ID of existing playlist is: {playlistStatus.PlaylistId}. Type y to confirm update." );
                             var confirm = Console.ReadLine();
                             if ( confirm == "y" || confirm == "Y" )
                             {

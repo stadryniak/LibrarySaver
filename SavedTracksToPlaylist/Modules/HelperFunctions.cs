@@ -97,8 +97,8 @@ namespace SavedTracksToPlaylist.Modules
 
         public static List<string> FindFirstCommonTrackUri( SpotifyWebAPI spotify, List<string> libraryUriList, string playlistId )
         {
-            Console.WriteLine( "Calculating differences.." );
             var playlistUriList = TracksUriList( spotify, playlistId );
+            Console.WriteLine( "Calculating differences..." );
             var diffList = libraryUriList.Except( playlistUriList );
             var enumerableDiffList = diffList.ToList();
 

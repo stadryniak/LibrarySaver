@@ -4,9 +4,9 @@ using SpotifyAPI.Web.Models; //Models for the JSON-responses
 
 namespace SavedTracksToPlaylist.Modules
 {
-    internal static class LibraryToPlaylist
+    internal class LibraryToPlaylist
     {
-        public static void AllLibraryToPlaylist( SpotifyWebAPI spotify )
+        public void AllLibraryToPlaylist( SpotifyWebAPI spotify )
         {
             //saves all track ids to list
 
@@ -21,15 +21,15 @@ namespace SavedTracksToPlaylist.Modules
             {
                 Console.WriteLine( "\n\nProfileID not read properly. Cannot create playlist.\n\n" );
             }
-            string userId = user.Id;
+            var userId = user.Id;
 
             //creates new empty playlist
             FullPlaylist playlist = spotify.CreatePlaylist( userId, "Library to Playlist" );
-            
+
             //error notification
-            Console.WriteLine(playlist.HasError()
+            Console.WriteLine( playlist.HasError()
                 ? "/n/nError while creating playlist.\n\n"
-                : "Playlist created and named \"Library to Playlist\"");
+                : "Playlist created and named \"Library to Playlist\"" );
 
 
             //inserts playlist tracks to playlist

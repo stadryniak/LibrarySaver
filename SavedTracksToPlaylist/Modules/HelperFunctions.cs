@@ -12,7 +12,7 @@ namespace SavedTracksToPlaylist.Modules
         public bool IsPresent { get; set; }
     }
 
-
+    //contains utility functions used by other classes
     internal static class HelperFunctions
     {
         public static PlaylistStatus PlaylistPresenceCheck( SpotifyWebAPI spotify ) //returns ID of playlist named "Library to Playlist"
@@ -23,7 +23,7 @@ namespace SavedTracksToPlaylist.Modules
             var offset = 0;
             while ( true )
             {
-                Paging<SimplePlaylist> userPlaylists = spotify.GetUserPlaylists( userId, 50, offset );
+               var userPlaylists = spotify.GetUserPlaylists( userId, 50, offset );
                 userPlaylists.Items.ForEach( playlist =>
                  {
                      if ( playlist.Name == "Library to Playlist" && playlist.Owner.Id == userId )
@@ -45,7 +45,7 @@ namespace SavedTracksToPlaylist.Modules
         {
             Console.WriteLine( "Generating list of saved tracks uris..." );
             var offset = 0;
-            List<string> tracksUri = new List<string>();
+            var tracksUri = new List<string>();
             while ( true )
             {
                 Paging<SavedTrack> savedTracks = spotify.GetSavedTracks( 50, offset );
@@ -68,7 +68,7 @@ namespace SavedTracksToPlaylist.Modules
         {
             Console.WriteLine( "Generating list of playlist tracks uris..." );
             var offset = 0;
-            List<string> tracksUri = new List<string>();
+            var tracksUri = new List<string>();
             while ( true )
             {
                 var playlistTracks = spotify.GetPlaylistTracks( playlistId, "next,items(track(uri))", 100, offset );
@@ -127,7 +127,7 @@ namespace SavedTracksToPlaylist.Modules
                 {
                     break;
                 }
-                ErrorResponse addTracks = spotify.AddPlaylistTracks( playlistId, tracksUri.GetRange( position, howMany ), position );
+                var addTracks = spotify.AddPlaylistTracks( playlistId, tracksUri.GetRange( position, howMany ), position );
                 if ( addTracks.HasError() )
                 {
                     Console.WriteLine( "Error while processing. Breaking." );

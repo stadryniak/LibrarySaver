@@ -19,7 +19,8 @@ namespace SavedTracksToPlaylist.Modules
                         if ( !playlistStatus.IsPresent )
                         {
                             Console.WriteLine( "Creating Playlist" );
-                            LibraryToPlaylist.AllLibraryToPlaylist( spotify );
+                            var libraryToPlaylist = new LibraryToPlaylist();
+                            libraryToPlaylist.AllLibraryToPlaylist( spotify );
                         }
                         else
                         {
@@ -28,7 +29,8 @@ namespace SavedTracksToPlaylist.Modules
                             if ( confirm == "y" || confirm == "Y" )
                             {
                                 Console.WriteLine( "Update confirmed. Proceeding..." );
-                                PlaylistUpdater.PlaylistUpdate( spotify, playlistStatus.PlaylistId );
+                                var playlistUpdater = new PlaylistUpdater();
+                                playlistUpdater.PlaylistUpdate( spotify, playlistStatus.PlaylistId );
                             }
                         }
                         break;
@@ -36,7 +38,9 @@ namespace SavedTracksToPlaylist.Modules
 
                 case 2:
                     {
-                        Analyze.GetSavedTrackProperties( spotify );
+                        Console.WriteLine( "Starting analysis" );
+                        var analyze = new Analyze();
+                        analyze.GetSavedTrackProperties( spotify );
                         break;
                     }
 

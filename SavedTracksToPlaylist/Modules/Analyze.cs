@@ -6,16 +6,16 @@ using SpotifyAPI.Web.Models;
 
 namespace SavedTracksToPlaylist.Modules
 {
-    static class Analyze
+    internal class Analyze
     {
-        public static List<string> GetSavedTrackProperties( SpotifyWebAPI spotify )
+        public List<string> GetSavedTrackProperties( SpotifyWebAPI spotify )
         {
-            List<string> tracksIds = HelperFunctions.GetSavedTracksUris( spotify );
+            var tracksIds = HelperFunctions.GetSavedTracksUris( spotify );
             tracksIds = tracksIds.Select( s => s.Replace( "spotify:track:", "" ) ).ToList();
 
-            List<SeveralTracks> trackList = new List<SeveralTracks>();
+            var trackList = new List<SeveralTracks>();
 
-            Console.WriteLine("Generating list of tracks ids...");
+            Console.WriteLine( "Generating list of tracks ids..." );
             for ( int i = 0; i < tracksIds.Count; i += 50 )
             {
                 var count = 50;
@@ -30,13 +30,13 @@ namespace SavedTracksToPlaylist.Modules
                 {
                     break;
                 }
-                List<string> shortIdList = tracksIds.GetRange( i, count );
+                var shortIdList = tracksIds.GetRange( i, count );
                 trackList.Add( spotify.GetSeveralTracks( shortIdList ) );
             }
 
-            Console.WriteLine("Track ids generated.");
+            Console.WriteLine( "Track ids generated." );
 
-            List<AudioFeatures> features = new List<AudioFeatures>();
+            var features = new List<AudioFeatures>();
 
             tracksIds.ForEach( id =>
              {

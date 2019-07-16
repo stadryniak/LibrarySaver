@@ -14,6 +14,7 @@ namespace SavedTracksToPlaylist
         static void Main()
         {
             //start menu
+            Console.WriteLine( "Main menu" );
             Console.WriteLine( "Save Saved Tracks to Playlist" );
             Console.WriteLine( "Type number of selected option and press enter" );
             Console.WriteLine( "Select what do you want to do:" );
@@ -39,7 +40,7 @@ namespace SavedTracksToPlaylist
                 Environment.Exit( 0 );
             }
 
-            ImplicitGrantAuth auth = new ImplicitGrantAuth( AuthorizationCredits.Authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.PlaylistModifyPublic );
+            var auth = new ImplicitGrantAuth( AuthorizationCredits.Authcode, "http://localhost:4002", "http://localhost:4002", Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.PlaylistModifyPublic );
             auth.AuthReceived += AuthOnAuthReceived;
             auth.Start();
             auth.OpenBrowser();
@@ -47,7 +48,7 @@ namespace SavedTracksToPlaylist
             Console.WriteLine( "Closing connection..." );
             auth.Stop();
             Console.WriteLine( "Connection closed." );
-            Console.WriteLine("Press any key to exit...");
+            Console.WriteLine( "Press any key to exit..." );
             Console.ReadKey();
         }
 
@@ -59,7 +60,7 @@ namespace SavedTracksToPlaylist
                 TokenType = payload.TokenType,
                 AccessToken = payload.AccessToken
             };
-            Controller controller = new Controller();
+            var controller = new Controller();
             controller.ApiController( spotify );
         }
     }

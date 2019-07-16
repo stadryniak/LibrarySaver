@@ -3,9 +3,9 @@ using System;
 
 namespace SavedTracksToPlaylist.Modules
 {
-    static class PlaylistUpdater
+    class PlaylistUpdater
     {
-        internal static void PlaylistUpdate( SpotifyWebAPI spotify, string playlistId )
+        internal void PlaylistUpdate( SpotifyWebAPI spotify, string playlistId )
         {
             var tracksUri = HelperFunctions.FindFirstCommonTrackUri( spotify, HelperFunctions.GetSavedTracksUris( spotify ), playlistId );
 
